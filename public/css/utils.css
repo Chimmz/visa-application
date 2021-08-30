@@ -1,0 +1,50 @@
+.u-no-bullets {
+   list-style: none;
+}
+.u-mgb-xsm {
+   margin-bottom: 1.7rem;
+}
+.u-mgb-sm {
+   margin-bottom: 3.5rem;
+}
+.u-mgb-lg {
+   margin-bottom: 7rem;
+}
+.u-mgb-xlg {
+   margin-bottom: 10rem;
+}
+
+.u-mgt-lg {
+   margin-top: 7rem;
+}
+
+.u-mgr-xsm {
+   margin-right: 0.7rem;
+}
+
+.u-d-block {
+   display: block;
+}
+
+.u-text-center {
+   margin-inline: auto;
+}
+.u-block-center {
+   margin-inline: auto;
+}
+
+.u-full-width {
+   width: 100%;
+}
+
+.u-hidden {
+   display: none;
+}
+
+.u-msg-error {
+   color: rgb(255, 44, 44);
+}
+
+.u-text-red {
+   color: var(--clr-red);
+}

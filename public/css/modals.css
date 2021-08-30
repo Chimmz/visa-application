@@ -1,0 +1,72 @@
+.modal {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   min-width: 45ch;
+   max-width: 85%;
+   transform: translate(-50%, -50%);
+   background: #fff;
+   padding: 2em 4em;
+   box-shadow: 0 0 5rem rgba(0, 0, 0, 0.5);
+   transition: all 0.4s;
+   z-index: 10;
+}
+@media (max-width: 60rem) {
+   .modal {
+      padding: 1.2em 2em;
+   }
+}
+.modal > .modal-title {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+.modal > .modal-title .fas {
+   font-size: 5rem;
+}
+.modal > .modal-title--success {
+   color: var(--clr-green);
+}
+.modal > .modal-title--success .iconify {
+   color: var(--clr-green);
+}
+.modal > .modal-title--fail {
+   color: var(--clr-red);
+}
+.modal > .modal-title--error .iconify {
+   color: var(--clr-red);
+}
+.modal-msg {
+   font-size: 1.75rem;
+}
+.modal-close {
+   font-size: 3.5rem;
+   position: absolute;
+   top: 0.8rem;
+   right: 2rem;
+   color: var(--clr-gray-dark);
+   cursor: pointer;
+}
+.modal-close:hover {
+   color: black;
+}
+
+.modal--hidden {
+   transform: translate(-50%, -50%) scale(0.3);
+   opacity: 0;
+}
+
+.overlay {
+   position: fixed;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.4);
+   transition: all 1s;
+}
+.overlay--transparent {
+   background: transparent !important;
+}
+.overlay--hidden {
+   width: 0;
+   height: 0;
+   opacity: 0;
+}

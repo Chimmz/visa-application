@@ -1,0 +1,121 @@
+*,
+*::before,
+*::after {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   color: inherit;
+}
+:root {
+   --clr-purple: #57599c;
+   --clr-purple-light: #6a6dc9;
+   --clr-purple-lighter: rgb(226, 227, 255);
+   --clr-red: #ec2719;
+   --clr-red-light: #c7281e;
+   --clr-gray-light: #f4f4f4;
+   --clr-gray-dark: #8f8f8f;
+   --clr-gray-darker: #7c7c7c;
+   --clr-green: rgb(58, 190, 58);
+}
+html {
+   font-size: 62.5%;
+   scroll-behavior: smooth;
+}
+
+@media (min-width: 1800px) {
+   html {
+      font-size: 80%;
+   }
+}
+
+@media (max-width: 1200px) {
+   html {
+      font-size: 60%;
+   }
+}
+
+@media (max-width: 900px) {
+   html {
+      font-size: 55%;
+   }
+}
+
+body {
+   min-height: 100vh;
+   font-family: 'PT Sans', sans-serif;
+   color: var(--clr-gray-dark);
+   font-size: 1.5rem;
+}
+
+main.page-main {
+   padding: 5rem 8vw;
+}
+main.page-main > * {
+   grid-column: layout-col-start 1;
+}
+.page-title {
+   /* grid-row: 1 / 2; */
+}
+
+a {
+   text-decoration: none;
+   font: inherit;
+}
+
+input::-webkit-input-placeholder {
+   color: rgb(206, 206, 206);
+}
+input[type='text'],
+input[type='number'],
+input[type='password'] {
+   background: var(--clr-gray-light);
+   outline: none;
+   border: none;
+   font: inherit;
+   padding: 0.5em 0.8em;
+   border-radius: 2px;
+   border-bottom: 2px solid transparent;
+   display: block;
+}
+input[type='text']:focus,
+input[type='number']:focus {
+   border-bottom: 2px solid var(--clr-purple-light);
+}
+
+.parag {
+   max-width: 50ch;
+}
+
+.btn {
+   outline: none;
+   border: none;
+   cursor: pointer;
+   font: inherit;
+   text-align: center;
+   padding: 0.65em 1em;
+   border-radius: 2px;
+   transition: all 0.4s;
+   width: max-content;
+}
+.btn-purple {
+   background: var(--clr-purple);
+   color: #fff;
+   /* text-transform: uppercase; */
+   font-weight: bold;
+}
+.btn-purple:hover {
+   background: var(--clr-purple-light);
+}
+
+.btn-purple-light {
+   background: var(--clr-purple-lighter);
+   color: var(--clr-purple);
+}
+.btn-purple-light:hover {
+   color: #000;
+}
+
+h1 {
+   /* font-family: 'Bitter', sans-serif; */
+   width: max-content;
+}

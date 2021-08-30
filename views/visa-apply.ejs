@@ -1,0 +1,185 @@
+<%- include('_header'); -%>
+<main class="page-main">
+   <!-- <p class="u-msg-error u-mgb-sm">Invalid phone number entered</p> -->
+   <h1 class="page-title u-mgb-lg">New Visa Application</h1>
+   <form action="/visa-apply" method="POST" id="visa-apply">
+      <div class="register">
+         <div class="form-group form-span-2">
+            <label for="" class="form-label">Full name</label>
+            <input
+               class="u-d-block"
+               type="text"
+               placeholder=""
+               value="<%= loggedInUser.fullname %>"
+               contenteditable="<%= !loggedInUser %>"
+               name="fullname"/>
+         </div>
+         <!-- <div class="form-group form-span-1">
+            <label for="" class="form-label">Surname</label>
+            <input class="u-d-block" type="text" placeholder="" name="surname"/>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Other name</label>
+            <input class="u-d-block" type="text" placeholder="" name="otherName"/>
+         </div> -->
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Age</label>
+            <input
+               class="u-d-block"
+               type="number"
+               min="18"
+               placeholder=""
+               name="age"
+            />
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Gender</label>
+            <div class="radio-group">
+               <div class="radio-option">
+                  <label for="male" class="radio-label">Male</label>
+                  <input
+                     type="radio"
+                     name="gender"
+                     value="male"
+                     placeholder=""
+                  />
+               </div>
+               <div class="radio-option">
+                  <label for="female" class="radio-label">Female</label>
+                  <input
+                     type="radio"
+                     name="gender"
+                     value="female"
+                     placeholder=""
+                  />
+               </div>
+            </div>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Date of birth</label>
+            <input class="" type="date" name="dob" />
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">State of origin</label>
+            <input class="u-d-block" type="text" placeholder="" name="stateOrigin"/>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Place of origin</label>
+            <div class="form-group form-group--row">
+               <input class="" type="text" placeholder="Town" name="placeOrigin"/>
+            </div>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Nationality</label>
+            <input class="u-d-block" type="text" placeholder="" name="nationality"/>
+         </div>
+         <div class="form-group form-span-2">
+            <label for="" class="form-label">Local govt. area</label>
+            <input class="u-d-block" type="text" placeholder="" name="lga"/>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Occupation</label>
+            <input class="u-d-block" type="text" placeholder="" name="occupation"/>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">height (in cm)</label>
+            <input
+               class="u-d-block"
+               type="number"
+               placeholder=""
+               min="60"
+               name="height"
+            />
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Color of eyes</label>
+            <select name="eyeColor" id="eye-color">
+               <option value="brown">Brown</option>
+               <option value="black">Black</option>
+               <option value="blue">Blue</option>
+            </select>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Color of skin</label>
+            <select name="skinColor" id="skin-color">
+               <option value="black">Black</option>
+               <option value="white">White</option>
+               <option value="red">Red</option>
+            </select>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Marital status</label>
+            <select name="maritalStatus" id="marital-status">
+               <option value="single">Single</option>
+               <option value="married">Married</option>
+               <option value="divorced">Divorced</option>
+               <option value="separated">Separated</option>
+            </select>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Next of kin</label>
+            <select name="nextOfKin">
+               <option value="father">Father</option>
+               <option value="mother">Mother</option>
+               <option value="son">Son</option>
+               <option value="daughter">Daughter</option>
+               <option value="brother">Brother</option>
+               <option value="sister">Sister</option>
+               <option value="husband">Husband</option>
+               <option value="wife">Wife</option>
+               <option value="cousin">Cousin</option>
+               <option value="uncle">Uncle</option>
+               <option value="aunt">Aunt</option>
+               <option value="nephew">Nephew</option>
+               <option value="niece">Niece</option>
+            </select>
+            <!-- <input class="" type="text" name="nextOfKin"/> -->
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Passport no</label>
+            <input class="" type="text" value="<%= loggedInUser.passportNo %>" name="passportNo"/>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Passport issue date</label>
+            <input class="" type="date" name="passportIssuedAt" />
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Passport expiry date</label>
+            <input class="" type="date" name="passportExpiresAt" />
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Phone no</label>
+            <input class="u-d-block" type="text" placeholder="" name="phone"/>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Father's name</label>
+            <input class="u-d-block" type="text" placeholder="" name="fathersName"/>
+         </div>
+         <div class="form-group form-span-1">
+            <label for="" class="form-label">Mother's name</label>
+            <input class="u-d-block" type="text" placeholder="" name="mothersName"/>
+         </div>
+      </div>
+
+      <button
+         class="btn btn-purple u-d-block u-block-center u-mgt-lg"
+         type="submit"
+         name="apply"
+      >
+         Proceed to apply
+      </button>
+   </form>
+   <div class="modal modal--hidden">
+      <h1 class="modal-title u-mgb-xsm u-block-center">
+         <i class="fas fa-check-circle"></i>
+         <i class="fas fa-times"></i>
+         Success!
+      </h1>
+      <p class="parag modal-msg u-mgb-sm u-text-center">Your visa application was submitted successfully.</p>
+      <button class="btn btn-purple u-d-block u-block-center u-full-width modal-btn-ok">Ok</button>
+      <span class="modal-close">&times;</span>
+   </div>
+   <div class="overlay overlay--transparent overlay--hidden"></div>
+</main>
+</body>
+</html>

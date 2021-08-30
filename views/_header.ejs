@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Bitter:wght@100;200;300;400;500;600&family=Dancing+Script:wght@400;600&family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap"
+         rel="stylesheet"
+      />
+      <link
+         rel="stylesheet"
+         href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+         crossorigin="anonymous"
+      />
+      <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+      <link rel="stylesheet" href="./css/style.css" />
+      <link rel="stylesheet" href="./css/base.css" />
+      <link rel="stylesheet" href="./css/navbar.css" />
+      <link rel="stylesheet" href="./css/utils.css" />
+      <link rel="stylesheet" href="./css/modals.css" />
+      <link rel="stylesheet" href="./css/form.css" />
+
+      <script src="/js/header.js" type="module" defer></script>
+      <% if (pageName === 'visa-apply') { %>
+      <script src="/js/visa-apply.js" defer></script>
+      <% } %> <% if (pageName === 'auth') { %>
+      <script src="/js/acct-access.js" defer></script>
+      <% } %>
+
+      <title>UK | Visa Processing Information System</title>
+   </head>
+   <body>
+      <nav class="nav">
+         <div class="nav-top">
+            <div class="nav-brand">
+               <img src="./img/uk-flag.jfif" alt="" />
+               <div class="nav-brand-name">
+                  <h2 style="font-family: 'Bitter', sans-serif">
+                     Visa Processing Information System
+                  </h2>
+                  <p style="font-family: 'Dancing Script', sans-serif">
+                     Simplicity with accuracy
+                  </p>
+               </div>
+            </div>
+            <ul class="nav-auth u-no-bullets">
+               <li>
+                  <a href="#" class="nav-authlink" name="logout">Logout</a>
+               </li>
+               <li>
+                  <a href="/login" class="nav-authlink" name="login">Login</a>
+               </li>
+               <li>
+                  <a href="/signup" class="nav-authlink btn btn-purple"
+                     >Create a new account</a
+                  >
+               </li>
+            </ul>
+         </div>
+         <div class="nav-bottom">
+            <ul class="nav-navig u-no-bullets">
+               <li class="nav-item"><a>Home</a></li>
+               <li class="nav-item"><a>Apply for visa</a></li>
+               <li class="nav-item"><a>Interview</a></li>
+            </ul>
+            <div class="nav-logged-in-user">
+               <span
+                  class="iconify"
+                  data-icon="ic:baseline-person"
+                  style="color: #423527; margin-right: 5px"
+               ></span>
+               <span class="nav-user-fullname"> </span>
+               <span
+                  class="nav-user-passportno"
+                  style="margin-left: 1rem; color: rgb(54, 204, 54)"
+               >
+               </span>
+            </div>
+            <!-- <h1><%= pageName %></h1> -->
+         </div>
+      </nav>
+   </body>
+</html>

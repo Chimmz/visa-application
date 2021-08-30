@@ -1,0 +1,31 @@
+<%- include('_header'); -%>
+
+<main class="page-main">
+   <input type="hidden" value="<%= authStyle %>">
+   <h1 class="page-title u-text-center u-mgb-sm">
+      <%= authStyle==='login' ? 'Log in':  'Create a new account'%>
+   </h1>
+   <form action="" class="auth-form u-d-block u-block-center">
+      <p class="u-msg-error u-mgb-sm u-hidden"></p>
+
+      <% if (authStyle!=='login') { %>
+         <div class="auth-form-group u-block-center u-mgb-xsm">
+            <label for="fullname">Full name</label>
+            <input class="u-full-width" type="text" name="fullname" placeholder="Your full name">
+         </div>
+      <% } %>
+      <div class="auth-form-group u-block-center u-mgb-xsm">
+         <label for="passportNo">Passport no</label>
+         <input class="u-full-width" type="text" name="passportNo" placeholder="Your passport number">
+      </div>
+      <div class="auth-form-group u-block-center u-mgb-xsm">
+         <label for="password">Password</label>
+         <input class="u-full-width" type="password" name="password" placeholder="Your password">
+      </div>
+      <button type="submit" class="btn btn-purple  u-full-width">
+         <%= authStyle==='login' ? 'Log in':  'Create account'%>
+      </button>
+   </form>
+</main>
+</body>
+</html>
