@@ -28,6 +28,7 @@
 
 .u-text-center {
    margin-inline: auto;
+   text-align: center;
 }
 .u-block-center {
    margin-inline: auto;
@@ -47,4 +48,7 @@
 
 .u-text-red {
    color: var(--clr-red);
+}
+.u-text-green {
+   color: rgb(51, 204, 51);
 }

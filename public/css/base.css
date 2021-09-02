@@ -9,7 +9,7 @@
 :root {
    --clr-purple: #57599c;
    --clr-purple-light: #6a6dc9;
-   --clr-purple-lighter: rgb(226, 227, 255);
+   --clr-purple-lighter: rgb(219, 220, 255);
    --clr-red: #ec2719;
    --clr-red-light: #c7281e;
    --clr-gray-light: #f4f4f4;
@@ -45,16 +45,21 @@ body {
    font-family: 'PT Sans', sans-serif;
    color: var(--clr-gray-dark);
    font-size: 1.5rem;
+   display: grid;
+   grid-template-rows: [nav-start] auto [nav-end main-start] 1fr [main-end];
 }
 
 main.page-main {
+   grid-row: main-start / main-end;
+   max-width: 100%;
+   background: white;
    padding: 5rem 8vw;
 }
 main.page-main > * {
    grid-column: layout-col-start 1;
 }
 .page-title {
-   /* grid-row: 1 / 2; */
+   font-family: 'Bitter', sans-serif;
 }
 
 a {
@@ -62,17 +67,29 @@ a {
    font: inherit;
 }
 
+img {
+   max-width: 100%;
+   max-height: 100%;
+}
 input::-webkit-input-placeholder {
    color: rgb(206, 206, 206);
 }
+input,
+select {
+   padding: 0.5em 0.8em;
+}
+select {
+   padding-block: 0.6em;
+}
 input[type='text'],
 input[type='number'],
-input[type='password'] {
-   background: var(--clr-gray-light);
+input[type='password'],
+input[type='date'],
+select {
+   background: #f4f4f4;
    outline: none;
    border: none;
    font: inherit;
-   padding: 0.5em 0.8em;
    border-radius: 2px;
    border-bottom: 2px solid transparent;
    display: block;
@@ -81,7 +98,10 @@ input[type='text']:focus,
 input[type='number']:focus {
    border-bottom: 2px solid var(--clr-purple-light);
 }
-
+input[type='date'],
+select {
+   border: none;
+}
 .parag {
    max-width: 50ch;
 }
@@ -93,15 +113,26 @@ input[type='number']:focus {
    font: inherit;
    text-align: center;
    padding: 0.65em 1em;
-   border-radius: 2px;
+   border-radius: 4px;
    transition: all 0.4s;
    width: max-content;
+   opacity: 0.9;
+}
+.btn:hover {
+   opacity: 1;
+}
+.btn.u-full-width {
+   padding-block: 0.8em;
+}
+.btn-md {
+   font-size: 1.3rem;
+   /* padding: 0.65em 1em; */
 }
 .btn-purple {
    background: var(--clr-purple);
    color: #fff;
    /* text-transform: uppercase; */
-   font-weight: bold;
+   /* font-weight: bold; */
 }
 .btn-purple:hover {
    background: var(--clr-purple-light);
@@ -114,7 +145,18 @@ input[type='number']:focus {
 .btn-purple-light:hover {
    color: #000;
 }
-
+.btn-outline-white {
+   background: transparent;
+   border: 1px solid #fff;
+   color: #fff;
+}
+.btn-green {
+   background: var(--clr-green);
+}
+.btn-red {
+   background: var(--clr-red);
+   color: #fff;
+}
 h1 {
    /* font-family: 'Bitter', sans-serif; */
    width: max-content;

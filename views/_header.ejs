@@ -27,13 +27,10 @@
       <link rel="stylesheet" href="./css/utils.css" />
       <link rel="stylesheet" href="./css/modals.css" />
       <link rel="stylesheet" href="./css/form.css" />
+      <link rel="stylesheet" href="./css/page-<%= pageName %>.css" />
 
       <script src="/js/header.js" type="module" defer></script>
-      <% if (pageName === 'visa-apply') { %>
-      <script src="/js/visa-apply.js" defer></script>
-      <% } %> <% if (pageName === 'auth') { %>
-      <script src="/js/acct-access.js" defer></script>
-      <% } %>
+      <script src="/js/<%= pageName %>.js" defer></script>
 
       <title>UK | Visa Processing Information System</title>
    </head>
@@ -53,13 +50,15 @@
             </div>
             <ul class="nav-auth u-no-bullets">
                <li>
-                  <a href="#" class="nav-authlink" name="logout">Logout</a>
+                  <a href="#" class="nav-authlink <%= pageName %>" name="logout"
+                     >Logout</a
+                  >
                </li>
                <li>
                   <a href="/login" class="nav-authlink" name="login">Login</a>
                </li>
                <li>
-                  <a href="/signup" class="nav-authlink btn btn-purple"
+                  <a href="/signup" class="nav-authlink btn btn-purple btn-md"
                      >Create a new account</a
                   >
                </li>
@@ -67,20 +66,32 @@
          </div>
          <div class="nav-bottom">
             <ul class="nav-navig u-no-bullets">
-               <li class="nav-item"><a>Home</a></li>
-               <li class="nav-item"><a>Apply for visa</a></li>
-               <li class="nav-item"><a>Interview</a></li>
+               <li
+                  class="nav-item <%= pageName === 'home' && 'nav-item--active' %>"
+               >
+                  <a href="/">Home</a>
+               </li>
+               <li
+                  class="nav-item <%= pageName === 'visa-apply' && 'nav-item--active' %>"
+               >
+                  <a>Apply for visa</a>
+               </li>
+               <li
+                  class="nav-item <%= pageName === 'admin' && 'nav-item--active' %>"
+               >
+                  <a>Admin page</a>
+               </li>
             </ul>
             <div class="nav-logged-in-user">
                <span
                   class="iconify"
                   data-icon="ic:baseline-person"
-                  style="color: #423527; margin-right: 5px"
+                  style="color: #efeffa; margin-right: 5px"
                ></span>
                <span class="nav-user-fullname"> </span>
                <span
                   class="nav-user-passportno"
-                  style="margin-left: 1rem; color: rgb(54, 204, 54)"
+                  style="margin-left: 1rem; color: rgb(115, 250, 115)"
                >
                </span>
             </div>

@@ -1,47 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-         href="https://fonts.googleapis.com/css2?family=Bitter:wght@100;200;300;400;500;600&family=Dancing+Script:wght@400;600&family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap"
-         rel="stylesheet"
-      />
-      <link rel="stylesheet" href="/css/style.css" />
-      <link rel="stylesheet" href="/css/base.css" />
-      <link rel="stylesheet" href="/css/navbar.css" />
-      <link rel="stylesheet" href="/css/utils.css" />
-      <link rel="stylesheet" href="/css/form.css" />
-      <title>UK | Visa Processing Information System</title>
-   </head>
-   <body>
-      <nav class="nav">
-         <div class="nav-top">
-            <div class="nav-brand">
-               <img src="/img/uk-flag.jfif" alt="" />
-               <div class="nav-brand-name">
-                  <h2 style="font-family: 'Bitter', sans-serif">
-                     Visa Processing Information System
-                  </h2>
-                  <p style="font-family: 'Dancing Script', sans-serif">
-                     Simplicity with accuracy
-                  </p>
-               </div>
-            </div>
-         </div>
-         <ul class="nav-navig u-no-bullets">
-            <li class="nav-item"><a href="">Home</a></li>
-            <li class="nav-item"><a href="">Apply for visa</a></li>
-            <li class="nav-item"><a href="">Interview</a></li>
-         </ul>
-      </nav>
-      <main class="page-main">Hey bro</main>
-   </body>
+<%- include('_header'); -%>
+
+<main class="page-main page-<%= pageName %>">
+   <h1 class="page-title u-mgb-sm">All Visa Applicants</h1>
+
+   <% if (!allApplicants.length) { %>
+      <p class="parag u-text-green">No applicants yet.</p>
+   <% } %>
+   <table class="page-admin-table u-full-width">
+      <tbody>
+         <% allApplicants.forEach(appl => { %>
+            <tr>
+               <td><%= appl.fullname %></td>
+               <td><%= appl.passportNo %></td>
+               <td><%= appl.nationality %></td>
+               <td><%= appl.gender %></td>
+               <td><%= appl.age %></td>
+               <!-- <td><a class="btn btn-md btn-outline-white">See more details</a></td> -->
+               <td class="u-text-green <%= appl.visaRejected && 'u-hidden' %>" data-notify="visa-granted">Visa granted</td>
+               <td class="u-text-red <%= appl.visaGranted && 'u-hidden' %>" data-notify="visa-rejected">Visa rejected</td>
+               <td>
+                  <button 
+                     class="btn btn-md btn-green" 
+                     id="btn-grant-visa" 
+                     data-applicant-passport-no="<%= appl.passportNo %>"
+                     data-admin-token="<%= token %>">
+                     Grant visa
+                  </button>
+               </td>
+               <td>
+                  <button 
+                     class="btn btn-md btn-red" 
+                     id="btn-reject-visa"
+                     data-applicant-passport-no="<%= appl.passportNo %>"
+                     data-admin-token="<%= token %>">
+                     Reject visa
+                  </button>
+               </td>
+            </tr>
+         <% }) %>
+      </tbody>
+   </table>
+   <div class="page-admin-overlay">
+      <img src="./img/visa-img.jpg" class="page-admin-overlay-img u-d-block u-full-width" alt="">
+   </div>
+</main>
+</body>
 </html>

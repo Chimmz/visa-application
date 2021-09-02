@@ -37,6 +37,7 @@ const handleResponse = function (response) {
          modalMsg.textContent = message;
    }
    modal.classList.remove('modal--hidden');
+   overlay.classList.remove('overlay--transparent');
    overlay.classList.remove('overlay--hidden');
 };
 const applyForVisa = async function (details) {

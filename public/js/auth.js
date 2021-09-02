@@ -31,7 +31,7 @@ const handleResponse = function (response) {
    switch (response.status) {
       case 'success':
          const { token, user } = response;
-         const { fullname, passportNo } = user;
+         const { fullname, passportNo, role } = user;
 
          removeErrorMsg();
          window.localStorage.setItem('VISA_PROCESSING_USER_TOKEN', token);
@@ -40,6 +40,7 @@ const handleResponse = function (response) {
             JSON.stringify({
                fullname,
                passportNo,
+               role,
                isLoggedIn: true
             })
          );

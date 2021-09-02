@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./models/User');
 const app = express();
@@ -51,7 +50,7 @@ const signToken = function (id) {
 
 const authenticate = async function (req, res, next) {
    const token = req.query.userToken;
-   console.log(token);
+   // console.log(token);
    if (!token) return res.status(401).redirect('/login');
 
    try {
@@ -66,16 +65,79 @@ const authenticate = async function (req, res, next) {
    }
 };
 
-app.get('/', (req, res) =>
-   res.render('index', { pageName: 'home', loggedInUser: req.user || 'null' })
-);
+const restrictToAdmin = function (req, res, next) {
+   if (req.user.role != 'embassy-admin')
+      return res.status(401).send('Unauthorized to view this page. 401');
+   return next();
+};
+
+app.get('/', (req, res) => {
+   res.render('home', { pageName: 'home' });
+});
+
+app.get('/applicants/:passportNo', async (req, res) => {
+   const { passportNo } = req.params;
+   return res
+      .status(200)
+      .json({ applicant: await VisaApplicant.findOne({ passportNo }) });
+});
 
 app.get('/login', (req, res) => {
-   res.render('acct-access', { pageName: 'auth', authStyle: 'login' });
+   res.render('auth', { pageName: 'auth', authStyle: 'login' });
 });
 app.get('/signup', (req, res) => {
-   res.render('acct-access', { pageName: 'auth', authStyle: 'signup' });
+   res.render('auth', { pageName: 'auth', authStyle: 'signup' });
 });
+
+app.get('/visa-apply', authenticate, (req, res) => {
+   // console.log(req.user);
+   res.render('visa-apply', {
+      pageName: 'visa-apply',
+      loggedInUser: req.user
+   });
+});
+
+const adminAuthMiddlewares = [authenticate, restrictToAdmin];
+
+app.get('/admin-page', ...adminAuthMiddlewares, async (req, res) => {
+   const allApplicants = await VisaApplicant.find({});
+   console.log(allApplicants);
+   res.render('admin', {
+      pageName: 'admin',
+      allApplicants,
+      token: req.query.userToken
+   });
+});
+
+app.patch(
+   '/visa-application/:passportNo/:actionTaken',
+   ...adminAuthMiddlewares,
+   async (req, res, next) => {
+      try {
+         const { passportNo, actionTaken } = req.params;
+         const applicant = await VisaApplicant.findOne({ passportNo });
+         if (!applicant)
+            return next(new AppError('This applicant does not exis', 404));
+
+         switch (actionTaken) {
+            case 'grant':
+               applicant.visaGranted = true;
+               applicant.visaRejected = false;
+               await applicant.save();
+               break;
+
+            case 'reject':
+               applicant.visaGranted = false;
+               applicant.visaRejected = true;
+               await applicant.save();
+               break;
+         }
+         res.status(200).json({ updatedApplicant: applicant });
+      } catch (err) {
+         return next(new AppError(err.message, 400));
+      }
+   }
+);
 
 app.post('/signup', async (req, res, next) => {
    try {
@@ -132,14 +194,6 @@ app.post('/login', async (req, res, next) => {
    } catch (err) {
       console.log(err);
    }
-});
-
-app.get('/visa-apply', authenticate, (req, res) => {
-   // console.log(req.user);
-   res.render('visa-apply', {
-      pageName: 'visa-apply',
-      loggedInUser: req.user || null
-   });
 });
 
 app.post('/visa-apply', authenticate, async (req, res, next) => {

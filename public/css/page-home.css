@@ -1,0 +1,60 @@
+.page-home {
+   padding: 3vw !important;
+   /* padding-inline-start: 0 !important; */
+   /* padding-block-start: 0 !important; */
+   display: flex;
+   gap: 3rem;
+}
+@media (max-width: 56.25em) {
+   .page-home {
+      flex-wrap: wrap;
+   }
+}
+.page-home > * {
+   /* height: 100vh; */
+   /* border: 1px solid black; */
+}
+.page-home-content {
+   flex: 1 1 75%;
+}
+.page-home-header {
+   height: 80vh;
+   background-image: url(../img/visa-img.jpg);
+   background-size: cover;
+   padding: 6%;
+   display: flex;
+   align-items: center;
+   position: relative;
+}
+.page-home-header:before {
+   content: '';
+   position: absolute;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.5);
+}
+.page-home-header > * {
+   position: relative;
+   z-index: 3;
+}
+.page-home-header-textbox {
+   transform: translateY(-2rem);
+}
+.page-home-header h1 {
+   font-size: 5.5rem;
+   max-width: 12ch;
+   color: var(--clr-purple-lighter);
+}
+
+.page-home-notification {
+   flex: 1 1 25%;
+   min-height: 50vh;
+   /* margin-top: 3rem; */
+   background: white;
+   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.07), 0 3px 25px rgba(0, 0, 0, 0.07);
+   padding: 2.5rem 3rem;
+}
+.page-home-notification h4 {
+   color: var(--clr-purple);
+   text-transform: uppercase;
+   font-size: 1.7rem;
+}

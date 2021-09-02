@@ -13,8 +13,6 @@ const visaApplicantSchema = new mongoose.Schema({
       lowercase: true,
       required: [true, 'Full name field is required']
    },
-   // surname: { type: String, lowercase: true, required: true },
-   // otherName: { type: String, lowercase: true, required: true },
    age: { type: Number, required: [true, 'Age field is required'] },
    gender: {
       type: String,
@@ -68,11 +66,28 @@ const visaApplicantSchema = new mongoose.Schema({
    },
    passportIssuedAt: {
       type: Date,
-      required: [true, 'Passport issued date field is required']
+      required: [true, 'Passport issued date field is required'],
+      validate: function (value) {
+         if (+new Date(this.dob) > +new Date(value))
+            throw new Error(
+               'Date of birth cannot be after passport issue date'
+            );
+         return true;
+      }
    },
    passportExpiresAt: {
       type: Date,
-      required: [true, 'Passport expiry date field is required']
+      required: [true, 'Passport expiry date field is required'],
+      validate: function (value) {
+         if (+new Date(value) < +new Date(this.passportIssuedAt))
+            throw new Error('Expiry date cannot be before date of issue');
+
+         if (+new Date(this.dob) > +new Date(value))
+            throw new Error(
+               'Date of birth cannot be after passport expiry date'
+            );
+         return true;
+      }
    },
    phone: {
       type: String,
@@ -93,7 +108,10 @@ const visaApplicantSchema = new mongoose.Schema({
       }
    },
    fathersName: { type: String, lowercase: true, required: true },
-   mothersName: { type: String, lowercase: true, required: true }
+   mothersName: { type: String, lowercase: true, required: true },
+   visaGranted: { type: Boolean, default: false },
+   visaRejected: { type: Boolean, default: false },
+   dateApplied: { type: Date, default: Date.now }
 });
 
 const VisaApplicant = new mongoose.model('VisaApplicant', visaApplicantSchema);

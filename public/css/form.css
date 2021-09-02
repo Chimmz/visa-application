@@ -1,21 +1,18 @@
 .page-main .register {
    display: flex;
    flex-wrap: wrap;
-   gap: 2.5rem;
+   gap: 2rem;
    row-gap: 3rem;
 }
 
 .form-span-1 {
    flex: 1 1 30%;
-   /* background: black; */
 }
 .form-span-2 {
    flex: 1 1 63%;
-   /* background: black; */
 }
 .form-span-3 {
    flex: 1 1 96%;
-   /* background: black; */
 }
 
 .form-group {
@@ -35,14 +32,16 @@
 
 .form-group .form-label {
    display: block;
+   font-size: 1.3rem;
    color: var(--clr-gray-darker);
    text-transform: uppercase;
+   margin-bottom: 0.3rem;
 }
 
 .radio-group {
    display: flex;
    align-items: center;
-   gap: 3rem;
+   gap: 2rem;
 }
 
 .radio-option {
@@ -55,7 +54,7 @@
    margin-right: auto;
 }
 
-/* Auth form (form in login and signup page) */
+/* Auth form (form in login and signup pages) */
 .auth-form {
    width: 50%;
 }

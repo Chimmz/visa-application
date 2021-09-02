@@ -54,6 +54,8 @@
 .modal--hidden {
    transform: translate(-50%, -50%) scale(0.3);
    opacity: 0;
+   width: 0;
+   height: 0;
 }
 
 .overlay {

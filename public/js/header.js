@@ -12,9 +12,12 @@ const currentUser =
    JSON.parse(localStorage.getItem('VISA_PROCESSING_USER')) || '';
 
 (function () {
-   navlinks[0].href = '/';
-   navlinks[1].href = `/visa-apply?userToken=${token}`;
-   navlinks[2].href = '/interview';
+   navlinks[1].href = `/visa-apply?userToken=${token}`; // Link to apply visa page
+
+   if (currentUser.role !== 'embassy-admin')
+      navlinks[2].classList.add('u-hidden');
+   // Link to admin page
+   else navlinks[2].href = `/admin-page?userToken=${token}`;
 })();
 
 switch (currentUser?.isLoggedIn) {
